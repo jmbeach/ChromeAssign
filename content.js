@@ -51,6 +51,8 @@
             }
             var re = /\<img.*src\=\"\//g;
             body = body.replace(re, '<img src="https://webassign.net/');
+            re = /(\<form.*action\=\")\//g;
+            body = body.replace(re, '$1https://webassign.net/');
             callback(null, body);
         });
     }
@@ -64,4 +66,4 @@
         }
     });
 }
-var WA = new WebAssignPracticeGenerator();
+new WebAssignPracticeGenerator();
