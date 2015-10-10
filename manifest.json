@@ -1,0 +1,19 @@
+﻿{
+  "manifest_version": 2,
+  "name": "Webassign Practice Another Version",
+  "version": "0.1",
+  "content_scripts": [
+    {
+      "js": [ "jquery.min.js", "content.js" ],
+      "matches": [
+        "https://www.webassign.net/web/*"
+      ]
+    }
+  ],
+  "browser_action": {
+    "default_icon": "images/16x16.png"
+  },
+  "background": {
+    "scripts":  ["background.js"]
+  }
+}
