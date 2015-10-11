@@ -53,6 +53,8 @@
             body = body.replace(re, '<img src="https://webassign.net/');
             re = /(\<form.*action\=\")\//g;
             body = body.replace(re, '$1https://webassign.net/');
+            re = /(\<form.*method\=\"post\".*)(\>)/g;
+            body = body.replace(re, '$1 target="_blank">');
             callback(null, body);
         });
     }
