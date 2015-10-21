@@ -16,25 +16,30 @@
         }
         return urls;
     }
+    var _getHtml = function (url,index,length, htmls,callback) {
+        var i = index;
+        var len = length;
+        $.ajax({
+            url: url,
+            success: function (data) {
+                htmls[i] = data;
+                if (htmls.length == len) {
+                    callback(null, htmls);
+                }
+            },
+            error: function (err) {
+                console.log(err);
+                callback(err);
+            }
+        });
+    }
     WebAssignPracticeGenerator.prototype.GetHtmls = function (callback) {
         var urls = me.PracticeUrls();
         var htmls = [];
         if (!urls.length) return;
         for (var i = 0; i < urls.length; i++) {
             var url = urls[i];
-            $.ajax({
-                url: url,
-                success: function (data) {
-                    htmls.push(data);
-                    if (htmls.length == urls.length) {
-                        callback(null, htmls);
-                    }
-                },
-                error: function (err) {
-                    console.log(err);
-                    callback(err);
-                }
-            });
+            _getHtml(url,i, urls.length,htmls,callback);
         }
     }
     WebAssignPracticeGenerator.prototype.GeneratePracticeHtml = function (callback) {
