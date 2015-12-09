@@ -4,7 +4,10 @@
   "version": "0.1",
   "content_scripts": [
     {
-      "js": [ "jquery.min.js", "content.js" ],
+      "js": [
+        "lib/jquery.min.js",
+        "src/WebAssignPracticeGenerator.js"
+      ],
       "matches": [
         "https://www.webassign.net/web/*"
       ]
@@ -14,6 +17,6 @@
     "default_icon": "images/16x16.png"
   },
   "background": {
-    "scripts":  ["background.js"]
+    "scripts":  ["src/background.js"]
   }
 }

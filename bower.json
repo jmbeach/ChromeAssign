@@ -1,0 +1,19 @@
+{
+  "name": "chromeassign",
+  "homepage": "https://github.com/jmbeach/ChromeAssign",
+  "authors": [
+    "thatshowifeel"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {}
+}
