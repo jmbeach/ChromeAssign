@@ -48,7 +48,7 @@
     WebAssignPracticeGenerator.prototype.GetHtmlIframes = function () {
         var urls = me.PracticeUrls();
         if (!urls.length) return;
-        var body = '<button id="printButton" onclick="javascript:printPage()" >Print this page</button>';
+        var body = '<button id="printButton" >Print this page<\/button>';
         for (var i = 0; i < urls.length; i++) {
             var url = urls[i];
             body += makeIframe(url)
@@ -76,12 +76,14 @@
             callback(null, body);
         });
     }
-	var addScript = function(head,src) {
-		var script = $("<script type=\"text/javascript\" src=\""+src+"\"></script>");
-		head.appendChild(script[0]);
+	var addScript = function(document,src) {
+		var baseUrl = "chrome-extension://mnccjognhpkgdbcjbmpmhedbbdpoomkg/lib/";
+		var script = document.createElement("script");
+		script.src = +baseUrl + src;
+		document.body.appendChild(script);
 	};
 	var addRawJs = function (head, src) {
-	    var script = $("<script type=\"text/javascript\">" + src + "</script>");
+	    var script = $("<script type=\"text/javascript\">" + src + "<\/script>");
 	    head.appendChild(script[0]);
 	}
 	var addCss = function (head, src) {
@@ -133,8 +135,10 @@
                 var w = window.open();
                 w.document.title = "Webassign Practice";
                 var rawJs = "function printPage() {window.print(); for (var k = 0; k < window.frames.length; k++) {window.frames[k].focus(); window.frames[k].print(); } }";
-               var head = w.document.getElementsByTagName("head")[0];
-               addRawJs(head,rawJs);
+		addScript(w.document,"jquery.min.js");
+		addScript(w.document,"jquery.printPage.js");
+		addScript(w.document,"../src/onLoad.js");
+		//addRawJs(head,rawJs);
             //    for (var i = 0; i < css.length; i++) {
             //        addCss(head, css[i]);
             //    }

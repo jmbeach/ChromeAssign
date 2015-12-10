@@ -18,5 +18,7 @@
   },
   "background": {
     "scripts":  ["src/background.js"]
-  }
+  },
+  "web_accessible_resources": ["lib/jquery.min.js", "lib/jquery.printPage.js",
+    "src/onLoad.js"]
 }
