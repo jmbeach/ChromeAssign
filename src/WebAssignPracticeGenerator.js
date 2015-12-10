@@ -48,7 +48,7 @@
     WebAssignPracticeGenerator.prototype.GetHtmlIframes = function () {
         var urls = me.PracticeUrls();
         if (!urls.length) return;
-        var body = "";
+        var body = '<button id="printButton" onclick="javascript:printPage()" >Print this page</button>';
         for (var i = 0; i < urls.length; i++) {
             var url = urls[i];
             body += makeIframe(url)
@@ -132,7 +132,9 @@
             //    ];
                 var w = window.open();
                 w.document.title = "Webassign Practice";
-            //    var head = w.document.getElementsByTagName("head")[0];
+                var rawJs = "function printPage() {window.print(); for (var k = 0; k < window.frames.length; k++) {window.frames[k].focus(); window.frames[k].print(); } }";
+               var head = w.document.getElementsByTagName("head")[0];
+               addRawJs(head,rawJs);
             //    for (var i = 0; i < css.length; i++) {
             //        addCss(head, css[i]);
             //    }
